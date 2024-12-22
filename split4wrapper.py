@@ -104,9 +104,13 @@ class split():
                 
 # path = input('dir:')
 path = join(sys.argv[-1])
-
-splitter = split(path)
-splitter.getCue()
-splitter.split()
-splitter.moveFiles()
+baseobj = os.scandir(path)
+for entry in baseobj :
+    if entry.is_dir():
+        subpath = os.path.join(path, entry.name)
+        print (subpath)
+        splitter = split(subpath)
+        splitter.getCue()
+        splitter.split()
+        splitter.moveFiles()
             
